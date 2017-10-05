@@ -80,6 +80,11 @@ void drive() {
 			motor[leftBack] = 127;
 	}
 
+
+	if(vexRT[ch3] > 10) {
+			motor[rightBack] = 127;
+			motor[leftBack] = 127;
+	}
 }
 
 task usercontrol()
