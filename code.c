@@ -17,6 +17,9 @@
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
 
+
+int threshold = 10;
+
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
 /*                                                                           */
@@ -75,25 +78,25 @@ task autonomous()
 
 void drive() {
 	//forward
-		if(vexRT[Ch3] > 10) {
+		if(vexRT[Ch3] > threshold) {
 				motor[rightBack] = 127;
 				motor[leftBack] = 127;
 		}
 
 		//backward
-		if(vexRT[Ch3] < 10) {
+		if(vexRT[Ch3] < threshold) {
 				motor[rightBack] = -127;
 				motor[leftBack] = -127;
 		}
 
 		//right
-		if(vexRT[Ch1] > 10) {
+		if(vexRT[Ch1] > threshold) {
 				motor[rightBack] = 127;
 				motor[leftBack] = -127;
 		}
 
 		//left
-		if(vexRT[Ch1} < 10) {
+		if(vexRT[Ch1] < threshold) {
 				motor[rightBack] = -127;
 				motor[leftBack] = 127;
 		}
@@ -102,10 +105,8 @@ void drive() {
 
 task usercontrol()
 {
-  // User control code here, inside the loop
-
-  while (true)
-  {
-    	drive();
-  }
+		  while (true)
+		  {
+		    	drive();
+		  }
 }
