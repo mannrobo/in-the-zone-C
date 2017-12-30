@@ -1,3 +1,5 @@
+#pragma config(Sensor, dgtl1,  rightEncoder,   sensorQuadEncoder)
+#pragma config(Sensor, dgtl3,  leftEncoder,    sensorQuadEncoder)
 #pragma config(Motor,  port2,           rightBack,     tmotorVex393HighSpeed_MC29, openLoop)
 #pragma config(Motor,  port3,           leftBack,      tmotorVex393HighSpeed_MC29, openLoop, reversed)
 #pragma config(Motor,  port4,           rightLS,       tmotorVex393_MC29, openLoop)
@@ -23,7 +25,8 @@
 #include "Vex_Competition_Includes.c"
 
 
-int threshold = 10;
+int threshold = 75;
+int LSMAX = 1000;
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
@@ -36,6 +39,9 @@ int threshold = 10;
 /*---------------------------------------------------------------------------*/
 
 void pre_auton(){
+	SensorValue(rightEncoder) = 0;
+	SensorValue(leftEncoder) = 0;
+
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
   // running between Autonomous and Driver controlled modes. You will need to
   // manage all user created tasks if set to false.
@@ -93,25 +99,40 @@ void drive(int x, int y) {
 		motor[leftBack] = 0;
 }
 
+void test() {
+	if(vexRT[Btn8U] == 1) {
+		motor[rightBack] = 100;
+		motor[leftBack] = 100;
+	}
+	if(vexRT[Btn8D] == 1) {
+		motor[rightBack] = 0;
+		motor[leftBack] = 0;
+	}
+}
+
 void LS() {
 	//positive LS moves backward
 			//right trigger, button 6D extends out
 					if(vexRT[Btn6D] == 1) {
-							motor[rightLS] = 75;
-							motor[leftLS] = 75;
+							//if(abs(SensorValue(rightEncoder)) < LSMAX && abs(SensorValue(leftEncoder)) < LSMAX) {
+									motor[rightLS] = 90;
+									motor[leftLS] = 80;
+							//}
 					}
 			//right trigger, button 6U brings in
 					if(vexRT[Btn6U] == 1) {
-							motor[rightLS] = -75;
-							motor[leftLS] = 75;
+							motor[rightLS] = -90;
+							motor[leftLS] = -80;
 					}
 		motor[rightLS] = 0;
 		motor[leftLS] = 0;
 }
 
 task usercontrol() {
+
 		  while(true) {
 		  		drive(vexRT[Ch1], vexRT[Ch3]);
+		  		test();
 		  		LS();
 		  }
 
