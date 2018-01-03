@@ -131,9 +131,26 @@ void claw(int open, int close) {
 	}
 }
 
-void clawRotate() {
+void clawRotate(int clockwise, int counterclockwise) {
 	//trigger 8U counter clockwise if looking from the right side of the robot
 	//trigger 8D clockwise if looking from the right side of the robot
+		if(clockwise == 1) {
+
+		}
+		else if(counterclockwise == 1) {
+
+		}
+		else {
+
+		}
+}
+
+int hold = 0;
+void rotateStop(int button) {
+		if(button == 1) {
+			hold = 1;
+		}
+
 }
 
 void Riley() {
@@ -146,6 +163,15 @@ void Riley() {
 			//right trigger, button 6D extends
 			//right trigger, button 6U retracts
 	LS(vexRT[Btn6D], vexRT[Btn6U]);
+}
+
+void Emily() {
+	//Ch1 right and left, Ch3 forward and backward
+	drive(vexRT[Ch1], vexRT[Ch3]);
+	//5U opens, 5D closes
+	claw(vexRT[Btn5U], vexRT[Btn5D]);
+	//6U goes out, 6D comes in
+	LS(vexRT[Btn6U], vexRT[Btn6D]);
 }
 
 task usercontrol() {
