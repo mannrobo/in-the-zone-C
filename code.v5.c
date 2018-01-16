@@ -101,13 +101,13 @@ void drive(int x, int y) {
 
 void LS(int extend, int retract) {
 	//positive LS moves backward
-				if(extend == 1) {
+				if(extend == 1 && retract == 0) {
 						//if(abs(SensorValue(rightEncoder)) < LSMAX && abs(SensorValue(leftEncoder)) < LSMAX) {
 								motor[rightLS] = 90;
 								motor[leftLS] = 80;
 						//}
 				}
-				else if(retract == 1) {
+				else if(retract == 1 && extend == 0) {
 						motor[rightLS] = -90;
 						motor[leftLS] = -80;
 				}
