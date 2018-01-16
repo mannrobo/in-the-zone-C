@@ -24,8 +24,7 @@
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
 
-
-int threshold = 10;
+const int THRESHOLD = 10;
 int LSMAX = 1000;
 
 /*---------------------------------------------------------------------------*/
@@ -87,11 +86,11 @@ task autonomous(){
 
 void drive(int x, int y) {
 	//positive drive values = backwards
-			if(abs(x) > threshold) {
+			if(abs(x) > THRESHOLD) {
 					motor[rightBack] = x;
 					motor[leftBack] = -x;
 			}
-			else if(abs(y) > threshold) {
+			else if(abs(y) > THRESHOLD) {
 					motor[rightBack] = -y;
 					motor[leftBack] = -y;
 			} else {
