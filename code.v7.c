@@ -91,9 +91,34 @@ void autoRight180Turn() {
 		stopDrive();
 }
 
-void shortForward() {
+void autoLeft180Turn() {
+		motor[rightBack] = 75;
+		motor[leftBack] = 75;
+		wait1Msec(50);
+		stopDrive();
+}
+
+
+
+void autoShortForward() {
 		motor[rightBack] = -75;
 		motor[leftBack] = -75;
+		wait1Msec(30);
+		motor[rightBack] = 0;
+		motor[leftBack] = 0;
+}
+
+void autoLongForward() {
+		motor[rightBack] = -75;
+		motor[leftBack] = -75;
+		wait1Msec(60);
+		motor[rightBack] = 0;
+		motor[leftBack] = 0;
+}
+
+void autoShortBackward() {
+		motor[rightBack] = 75;
+		motor[leftBack] = 75;
 		wait1Msec(30);
 		motor[rightBack] = 0;
 		motor[leftBack] = 0;
@@ -102,10 +127,19 @@ void shortForward() {
 void shortAuto() {
 		//pseudocode, because this has not been tested yet
 		//drive forward, pick up a mobile goal, 180 right, drive forward and place it in the 10 point zone
-		shortForward();
+		autoShortForward();
 		autoLS();
 		autoRight180Turn();
-		shortForward();
+		autoShortForward();
+}
+
+void longAuto() {
+		shortAuto();
+		autoShortBackward();
+		autoLeft180Turn();
+		autoLongForward();
+		autoLS();
+		autoShortForward();
 }
 
 void oneMinute() {
@@ -113,6 +147,11 @@ void oneMinute() {
 		//back up, 180, drive forward, pick up mobile goal, place it in the opposite 10 point zone
 		//back up, 90 left, forward, 90 left, drive forward, pick up mobile goal, 180 drive forward and place it in the 10 point zone
 		//back up, 180, drive forward, pick up mobile goal, place it in the opposite 10 point zone
+		longAuto();
+		autoShortBackward();
+
+		//90 left, forward, 90 left
+		longAuto();
 }
 
 
