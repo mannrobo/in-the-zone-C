@@ -120,6 +120,7 @@ void shortAuto() {
 		autoForward(1250);
 		while(SensorValue(LSbumper) == 0) {
 				autoForward(100);
+				wait1Msec(10);
 		}
 		stopDrive();
 		autoRight(1500);
