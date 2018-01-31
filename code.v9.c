@@ -119,27 +119,53 @@ void autoBackward(int n) {
 		stopDrive();
 }
 
-void shortAuto() {
-		//pseudocode, because this has not been tested yet
+void shortAutoRightSide() {
 		//drive forward, pick up a mobile goal, 180 right, drive forward and place it in the 10 point zone
-		autoForward(1250);
+		autoForward(1000);
 		while(SensorValue(LSbumper) == 0) {
 				autoForward(100);
 				wait1Msec(10);
 		}
 		stopDrive();
-		autoRight(1500);
-		wait1Msec(10);
-		autoLSUp(2000);
-		wait1Msec(500);
+		autoRight(1800);
+		autoForward(2500);
+
+
+		autoLSUp(1000);
 		autoLSStop();
-		autoForward(2700);
-		autoLSDown(1500);
+		autoRight(300);
+		autoForward(500);
+		autoLSDown(1000);
+		autoLSStop();
+		autoBackward(1000);
+}
+
+void shortAutoRightSide5Points() {
+		autoForward(1000);
+		while(SensorValue(LSbumper) == 0) {
+				autoForward(100);
+				wait1Msec(10);
+		}
+		stopDrive();
+		autoRight(1800);
+		autoForward(2500);
+		autoBackward(1000);
+}
+
+void shortAutoLeftSide5Points() {
+		autoForward(1000);
+		while(SensorValue(LSbumper) == 0) {
+				autoForward(100);
+				wait1Msec(10);
+		}
+		stopDrive();
+		autoLeft(1800);
+		autoForward(2500);
 		autoBackward(1000);
 }
 
 void longAuto() {
-		shortAuto();
+		shortAutoRightSide();
 		autoBackward(1000);
 		autoLeft(1000);
 		autoForward(3000);
@@ -162,7 +188,7 @@ void oneMinute() {
 
 
 task autonomous(){
-  	shortAuto();
+  	shortAutoRightSide5Points();
 }
 
 /*---------------------------------------------------------------------------*/
