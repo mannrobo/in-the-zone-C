@@ -120,15 +120,40 @@ void autoBackward(int n) {
 }
 
 void shortAutoRightSide() {
-		//drive forward, pick up a mobile goal, 180 left, drive forward and place it in the 10 point zone
-		autoForward(2000);
-		while(SensorValue(LSbumper) == 0) {
-				autoForward(100);
-				wait1Msec(10);
-		}
+		motor[rightBack] = -100;
+		motor[leftBack] = -100;
+		wait1Msec(2000);
+		//while(SensorValue(LSbumper) == 0) {
+				//autoForward(100);
+				//wait1Msec(10);
+		//}
 		stopDrive();
-		autoLeft(2000);
-		autoForward(3000);
+		autoLSUp(500);
+		autoLSStop();
+		autoBackward(2000);
+		autoLeft(1170);
+		autoForward(1000);
+		autoLSDown(1000);
+		autoLSStop();
+		autoBackward(1000);
+}
+
+void shortAutoLeftSide() {
+		motor[rightBack] = -100;
+		motor[leftBack] = -100;
+		wait1Msec(2000);
+		//while(SensorValue(LSbumper) == 0) {
+				//autoForward(100);
+				//wait1Msec(10);
+		//}
+		stopDrive();
+		autoLSUp(500);
+		autoLSStop();
+		autoBackward(2000);
+		autoRight(1170);
+		autoForward(1000);
+		autoLSDown(1000);
+		autoLSStop();
 		autoBackward(1000);
 }
 
@@ -141,6 +166,44 @@ void autoRightSide5Points() {
 		stopDrive();
 		autoRight(1800);
 		autoForward(2500);
+		autoBackward(1000);
+}
+
+void JLMannAutoRight() {
+		motor[rightBack] = -100;
+		motor[leftBack] = -100;
+		wait1Msec(2000);
+		//while(SensorValue(LSbumper) == 0) {
+				//autoForward(100);
+				//wait1Msec(10);
+		//}
+		stopDrive();
+		autoLSUp(1000);
+		autoLSStop();
+		autoBackward(2000);
+		autoLeft(1170);
+		autoForward(1000);
+		autoLSDown(1000);
+		autoLSStop();
+		autoBackward(1000);
+}
+
+void JlMannAutoLeft() {
+		motor[rightBack] = -100;
+		motor[leftBack] = -100;
+		wait1Msec(2000);
+		//while(SensorValue(LSbumper) == 0) {
+				//autoForward(100);
+				//wait1Msec(10);
+		//}
+		stopDrive();
+		autoLSUp(1000);
+		autoLSStop();
+		autoBackward(2000);
+		autoRight(1170);
+		autoForward(1000);
+		autoLSDown(1000);
+		autoLSStop();
 		autoBackward(1000);
 }
 
@@ -178,7 +241,7 @@ void oneMinute() {
 
 
 task autonomous(){
-  	shortAutoRightSide();
+  JLMannAutoRight();
 }
 
 /*---------------------------------------------------------------------------*/
