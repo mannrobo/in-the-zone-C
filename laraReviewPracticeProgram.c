@@ -116,88 +116,88 @@ task usercontrol()
 
   	//code to drive backward
   	else if (vexRT[Ch2]< go){
-  		motor[port1] = -127; //rightback motor
-  	  motor[port2] = -127; //leftback motor
-		}
-		else {
-			motor[port1] = 0; //rightback motor
-			motor[port2] = 0; //leftback motor
-		}
+	motor[port1] = -127; //rightback motor
+	motor[port2] = -127; //leftback motor
+	}
+	else {
+		motor[port1] = 0; //rightback motor
+		motor[port2] = 0; //leftback motor
+	}
 
-		//code to drive right
-		if (vexRT[Ch4]> go) {
-			motor[port1] = -127; //rightback motor
-			motor[port2] = 127; //leftback motor
-		}
-
-
-		//code to drive left
-		else if (vexRT[Ch4]< go) {
-			motor[port1] = 127; //rightback motor
-			motor[port2] = -127; //leftback motor
-		}
-		else{
-			motor[port1] = 0; //rightback motor
-			motor[port2] = 0; //leftback motor
-		}
+	//code to drive right
+	if (vexRT[Ch4]> go) {
+		motor[port1] = -127; //rightback motor
+		motor[port2] = 127; //leftback motor
+	}
 
 
-		//LS extend
-		if (vexRT[Btn5U] == 1){
-			motor[port2] = 127; //leftback motor, I believe you meant to type port3
-			motor[port4] = 127; //LSback, LSleft would have been a better motor title name
-		}
-		else{
-			motor[port3] = 0; //LSright
-			motor[port4] = 0; //LSback
-		}
+	//code to drive left
+	else if (vexRT[Ch4]< go) {
+		motor[port1] = 127; //rightback motor
+		motor[port2] = -127; //leftback motor
+	}
+	else{
+		motor[port1] = 0; //rightback motor
+		motor[port2] = 0; //leftback motor
+	}
 
 
-		//LS retract
-		if (vexRT[Btn5D] == 1) {
-			motor[port3] = -127; //LSright
-			motor[port4] = - 127; //LSback
-		}
-		else {
-			motor[port3] = 0; //LSright
-			motor[port4] = 0; //LSback
-		}
+	//LS extend
+	if (vexRT[Btn5U] == 1){
+		motor[port2] = 127; //leftback motor, I believe you meant to type port3
+		motor[port4] = 127; //LSback, LSleft would have been a better motor title name
+	}
+	else{
+		motor[port3] = 0; //LSright
+		motor[port4] = 0; //LSback
+	}
 
 
-		//claw up
-		if (vexRT[Btn8U] == 1){
-			motor[port5] = 127; //clawupdown
-		}
-		else {
-			motor[port5] = 0; //clawupdown
-		}
+	//LS retract
+	if (vexRT[Btn5D] == 1) {
+		motor[port3] = -127; //LSright
+		motor[port4] = - 127; //LSback
+	}
+	else {
+		motor[port3] = 0; //LSright
+		motor[port4] = 0; //LSback
+	}
 
 
-		//claw down
-		if (vexRT[Btn8D] == 1){
-			motor[port5] = -127; //clawupdown
-		}
-		else {
-			motor[port5] = 0; //clawupdown
-		}
+	//claw up
+	if (vexRT[Btn8U] == 1){
+		motor[port5] = 127; //clawupdown
+	}
+	else {
+		motor[port5] = 0; //clawupdown
+	}
 
 
-		//claw open
-		if (vexRT[Btn8L] == 1) {
-			motor[port6] = 127; //clawopenclose
-		}
-		else {
-			motor[port6] = 0; //clawopenclose
-		}
+	//claw down
+	if (vexRT[Btn8D] == 1){
+		motor[port5] = -127; //clawupdown
+	}
+	else {
+		motor[port5] = 0; //clawupdown
+	}
 
 
-		//claw close
-		if (vexRT[Btn8R] == 1){
-			motor[port6] = -127; //clawopenclose
-		}
-		else {
-			motor[port6] = 0; //clawopenclose
-		}
+	//claw open
+	if (vexRT[Btn8L] == 1) {
+		motor[port6] = 127; //clawopenclose
+	}
+	else {
+		motor[port6] = 0; //clawopenclose
+	}
+
+
+	//claw close
+	if (vexRT[Btn8R] == 1){
+		motor[port6] = -127; //clawopenclose
+	}
+	else {
+		motor[port6] = 0; //clawopenclose
+	}
 
   }
 }
