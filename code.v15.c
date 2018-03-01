@@ -67,24 +67,22 @@ void pre_auton(){
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-
 void autoLSStop() {
 		motor[rightLS] = 0;
 		motor[leftLS] = 0;
 }
 
-void autoLSUp(int n) {
-		//check quadencoders
-		motor[rightLS] = 90;
-		motor[leftLS] = 80;
-		wait1Msec(n);
-		autoLSStop();
-}
-
-void autoLSDown(int n) {
-		motor[rightLS] = -90;
-		motor[leftLS] = -80;
-		wait1Msec(n);
+void autoLS(const string motion, int time) {
+		if(motion == "up") {
+				motor[rightLS] = 90;
+				motor[leftLS] = 80;
+				wait1Msec(time);
+		}
+		if(motion == "down") {
+				motor[rightLS] = -90;
+				motor[leftLS] = -80;
+				wait1Msec(time);
+		}
 		autoLSStop();
 }
 
@@ -119,7 +117,7 @@ void autoDrive(const string direction, int speed, int time) {
 		}
 		if(direction == "left") {
 				motor[bottomRight] = speed;
-				motor[topRight] = speed
+				motor[topRight] = speed;
 				motor[bottomLeft] = -speed;
 				motor[topLeft] = -speed;
 				wait1Msec(time);
@@ -136,12 +134,12 @@ void shortAutoRightSide() {
 		}
 		stopDrive();
 
-		autoLSUp(1000);
+		autoLS("up", 1000);
 		autoDrive("backward", 75, 1000);
 		autoDrive("left", 75, 1800);
 		autoDrive("forward", 75, 2500);
 		stopDrive();
-		autoLSDown(1000);
+		autoLS("down", 1000);
 		autoDrive("backward", 75, 1000);
 }
 
@@ -154,12 +152,12 @@ void shortAutoLeftSide() {
 		}
 		stopDrive();
 
-		autoLSUp(1000);
+		autoLS("up", 1000);
 		autoDrive("backward", 75, 1000);
 		autoDrive("right", 75, 1800);
 		autoDrive("forward", 75, 2500);
 		stopDrive();
-		autoLSDown(1000);
+		autoLS("down", 1000);
 		autoDrive("backward", 75, 1000);
 }
 
@@ -168,7 +166,7 @@ void longAuto() {
 		autoDrive("backward", 75, 1000);
 		autoDrive("left", 75, 1000);
 		autoDrive("forward", 75, 3000);
-		autoLSUp(1000);
+		autoLS("up", 1000);
 		autoDrive("forward", 75, 1000);
 }
 
