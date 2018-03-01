@@ -95,81 +95,81 @@ void stopDrive() {
 		motor[topLeft] = 0;
 }
 
-void autoDrive(const string direction, int n) {
+void autoDrive(const string direction, int speed, int time) {
 		if(direction == "forward") {
-				motor[bottomRight] = 75;
-				motor[topRight] = 75;
-				motor[bottomLeft] = 75;
-				motor[topLeft] = 75;
-				wait1Msec(n);
+				motor[bottomRight] = speed;
+				motor[topRight] = speed;
+				motor[bottomLeft] = speed;
+				motor[topLeft] = speed;
+				wait1Msec(time);
 		}
 		if(direction == "backward") {
-				motor[bottomRight] = -75;
-				motor[topRight] = -75;
-				motor[bottomLeft] = -75;
-				motor[topLeft] = -75;
-				wait1Msec(n);
+				motor[bottomRight] = -speed;
+				motor[topRight] = -speed;
+				motor[bottomLeft] = -speed;
+				motor[topLeft] = -speed;
+				wait1Msec(time);
 		}
 		if(direction == "right") {
-				motor[bottomRight] = -75;
-				motor[topRight] = -75;
-				motor[bottomLeft] = 75;
-				motor[topLeft] = 75;
-				wait1Msec(n);
+				motor[bottomRight] = -speed;
+				motor[topRight] = -speed;
+				motor[bottomLeft] = speed;
+				motor[topLeft] = speed;
+				wait1Msec(time);
 		}
 		if(direction == "left") {
-				motor[bottomRight] = 75;
-				motor[topRight] = 75;
-				motor[bottomLeft] = -75;
-				motor[topLeft] = -75;
-				wait1Msec(n);
+				motor[bottomRight] = speed;
+				motor[topRight] = speed
+				motor[bottomLeft] = -speed;
+				motor[topLeft] = -speed;
+				wait1Msec(time);
 		}
 		stopDrive();
 }
 
 void shortAutoRightSide() {
 		//drive forward, pick up a mobile goal, 180 left, drive forward and place it in the 10 point zone
-		autoDrive("forward", 1000);
+		autoDrive("forward", 75, 1000);
 		while(SensorValue(LSbumper) == 0) {
-				autoDrive("forward", 100);
+				autoDrive("forward", 75, 100);
 				wait1Msec(10);
 		}
 		stopDrive();
 
 		autoLSUp(1000);
-		autoDrive("backward", 1000);
-		autoDrive("left", 1800);
-		autoDrive("forward", 2500);
+		autoDrive("backward", 75, 1000);
+		autoDrive("left", 75, 1800);
+		autoDrive("forward", 75, 2500);
 		stopDrive();
 		autoLSDown(1000);
-		autoDrive("backward", 1000);
+		autoDrive("backward", 75, 1000);
 }
 
 void shortAutoLeftSide() {
 		//drive forward, pick up a mobile goal, 180 right, drive forward and place it in the 10 point zone
-		autoDrive("forward", 1000);
+		autoDrive("forward", 75, 1000);
 		while(SensorValue(LSbumper) == 0) {
-				autoDrive("forward", 100);
+				autoDrive("forward", 75, 100);
 				wait1Msec(10);
 		}
 		stopDrive();
 
 		autoLSUp(1000);
-		autoDrive("backward", 1000);
-		autoDrive("right", 1800);
-		autoDrive("forward", 2500);
+		autoDrive("backward", 75, 1000);
+		autoDrive("right", 75, 1800);
+		autoDrive("forward", 75, 2500);
 		stopDrive();
 		autoLSDown(1000);
-		autoDrive("backward", 1000);
+		autoDrive("backward", 75, 1000);
 }
 
 void longAuto() {
 		shortAutoRightSide();
-		autoDrive("backward", 1000);
-		autoDrive("left", 1000);
-		autoDrive("forward", 3000);
+		autoDrive("backward", 75, 1000);
+		autoDrive("left", 75, 1000);
+		autoDrive("forward", 75, 3000);
 		autoLSUp(1000);
-		autoDrive("forward", 1000);
+		autoDrive("forward", 75, 1000);
 }
 
 void oneMinute() {
@@ -178,10 +178,10 @@ void oneMinute() {
 		//back up, 90 left, forward, 90 left, drive forward, pick up mobile goal, 180 drive forward and place it in the 10 point zone
 		//back up, 180, drive forward, pick up mobile goal, place it in the opposite 10 point zone
 		longAuto();
-		autoDrive("backward", 1000);
-		autoDrive("left", 500);
-		autoDrive("forward", 1000);
-		autoDrive("left", 500);
+		autoDrive("backward", 75, 1000);
+		autoDrive("left", 75, 500);
+		autoDrive("forward", 75, 1000);
+		autoDrive("left", 75, 500);
 		longAuto();
 }
 
