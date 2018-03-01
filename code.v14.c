@@ -200,7 +200,7 @@ void oneMinute() {
 
 
 task autonomous(){
-  	//shortAutoRightSide();
+  	shortAutoRightSide();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -213,7 +213,7 @@ task autonomous(){
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-void drive(int x, int y) {
+void drive(int y, int x) {
 			if(abs(x) > threshold) {
 					//right, bottom right goes backwards, top right goes forward
 					motor[bottomRight] = -x;
